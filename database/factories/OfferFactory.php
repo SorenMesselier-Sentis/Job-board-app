@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -39,7 +40,8 @@ class OfferFactory extends Factory
                 'draft',
                 'published',
                 'updated',
-            ])
+            ]),
+            'published_at' => Carbon::createFromFormat('d-m-Y', fake()->date('d-m-Y'))->format('Y-m-d'),
         ];
     }
 }
