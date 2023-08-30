@@ -3,8 +3,24 @@
 @section('content')
     <div class="container">
         <h1>Offres d'emplois</h1>
+        <select name="contractType" id="contractType">
+            <option>-Contrat-</option>
+            @foreach ($contractTypes as $contractType)
+                <option value="{{ $contractType }}">
+                    {{ $contractType }}
+                </option>
+            @endforeach
+        </select>
+        <select name="jobType" id="jobType">
+            <option>-Type de travail-</option>
+            @foreach ($jobTypes as $jobType)
+                <option value="{{ $jobType }}">
+                    {{ $jobType }}
+                </option>
+            @endforeach
+        </select>
         @foreach ($offers as $offer)
-            <div class="card mb-3">
+            <div class="offers card mb-3" data-contract="{{ $contractType }}">
                 <div class="row no-gutters">
                     <div class="col-md-3">
                         <img src="{{ $offer->image }}" class="card-img" alt="random meme">

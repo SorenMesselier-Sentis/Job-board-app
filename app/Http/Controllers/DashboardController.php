@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
 {
@@ -19,6 +18,14 @@ class DashboardController extends Controller
             ->where('offers.status', '=', 'published')
             ->simplePaginate(10);
 
-        return view('dashboard.index', compact('offers'));
+        $contractTypes = DB::table('offers')
+            ->distinct('contract_type')
+            ->pluck('contract_type');
+
+        $jobTypes = DB::table('offers')
+            ->distinct('job_type')
+            ->pluck('job_type');
+
+        return view('dashboard.index', compact('offers', 'contractTypes', 'jobTypes'));
     }
 }
