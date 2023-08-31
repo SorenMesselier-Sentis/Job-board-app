@@ -62,6 +62,9 @@
                                     {{ substr($offer->description, 0, 30) }}
                                     {{ strlen($offer->description) > 30 ? '...' : '' }}
                                 </p>
+                                <small class="text-muted">
+                                    {{ $offer->reference_id }}
+                                </small>
                             </div>
                         </div>
                     </div>
