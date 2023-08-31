@@ -12,12 +12,20 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $order = 'asc';
-        $dateAsc = false;
+        $orderDate = 'asc';
+        $orderLabel = 'asc';
 
-        if ($request->orderAsc) {
-            $order = 'desc';
+        $dateAsc = false;
+        $alphabeticalAsc = false;
+
+        if ($request->dateAsc) {
+            $orderDate = 'desc';
             $dateAsc = true;
+        }
+
+        if ($request->alphabeticalAsc) {
+            $orderLabel = 'desc';
+            $alphabeticalAsc = true;
         }
 
         $contractTypes = DB::table('offers')
@@ -33,12 +41,14 @@ class DashboardController extends Controller
             ->join('locations', 'companies.location_id', '=', 'locations.id')
             ->select('offers.*', 'companies.label as company_label', 'locations.city as company_location')
             ->where('offers.status', '=', 'published')
-            ->orderBy('published_at', $order)
+            ->orderBy('published_at', $orderDate)
+            ->orderBy('label', $orderLabel)
             ->simplePaginate(10);
 
         return view('dashboard.index', [
             'dataOffer' => compact('offers', 'contractTypes', 'jobTypes'),
             'dateAsc' => $dateAsc,
+            'alphabeticalAsc' =>$alphabeticalAsc,
         ]);
     }
 }

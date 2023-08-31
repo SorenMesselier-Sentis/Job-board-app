@@ -29,10 +29,14 @@
                     <form method="POST" class="d-flex align-items-center">
                         @csrf
                         <div class="form-check form-switch me-3">
-                            <input class="form-check-input" name="orderAsc" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ $dateAsc ? 'checked' : '' }}>
+                            <input class="form-check-input" name="dateAsc" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ $dateAsc ? 'checked' : '' }}>
                             <label class="form-check-label" for="flexSwitchCheckChecked">Le plus récent</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Ordonner par date</button>
+                        <div class="form-check form-switch me-3">
+                            <input class="form-check-input" name="alphabeticalAsc" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ $alphabeticalAsc ? 'checked' : '' }}>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Z vers A</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ordonner les résultats</button>
                     </form>
                 </div>
             </div>
