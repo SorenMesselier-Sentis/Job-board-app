@@ -41,6 +41,12 @@ Une fois tout cela fait, il reste à générer les données factices :
 php artisan migrate:fresh --seed
 ```
 
+Et pour finir, il va falloir vous rendre sur l'url suivante :
+
+```bash
+http://127.0.0.1:8000/dashboard
+```
+
 Et normalement vous aurez accès au projet !
 
 <hr>
