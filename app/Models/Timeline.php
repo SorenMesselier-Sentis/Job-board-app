@@ -15,10 +15,6 @@ class Timeline extends Model
         'offer_id',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-    ];
-
     public function offer(): BelongsTo
     {
         return $this->belongsTo(Offers::class, 'offer_id', 'id');

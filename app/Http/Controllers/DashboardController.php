@@ -20,8 +20,6 @@ class DashboardController extends Controller
             $dateAsc = true;
         }
 
-        dump($request->all());
-
         $contractTypes = DB::table('offers')
             ->distinct('contract_type')
             ->pluck('contract_type');

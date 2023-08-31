@@ -17,10 +17,6 @@ class Location extends Model
         'zipcode',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-    ];
-
     public function offer(): HasMany
     {
         return $this->hasMany(Offer::class);

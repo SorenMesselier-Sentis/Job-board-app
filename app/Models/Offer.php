@@ -24,10 +24,6 @@ class Offer extends Model
         'company_id',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-    ];
-
     public static function boot(): void
     {
         parent::boot();

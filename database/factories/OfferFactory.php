@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +18,11 @@ class OfferFactory extends Factory
      */
     public function definition(): array
     {
+        $response = Http::get('https://pokeapi.co/api/v2/pokemon/' . rand(1, 898));
+        $data = $response->json();
+
+        $spriteUrl = $data['sprites']['other']['official-artwork']['front_default'];
+
         return [
             'reference_id' => fake()->uuid(),
             'label' => fake()->jobTitle(),
@@ -35,7 +40,7 @@ class OfferFactory extends Factory
                 'CTO',
             ]),
             'description' => fake()->paragraphs(4, true),
-            'image' => fake()->imageUrl(),
+            'image' => $spriteUrl,
             'status' => fake()->randomElement([
                 'draft',
                 'published',
