@@ -5,7 +5,7 @@
         <h1>Offres d'emplois</h1>
         <select name="contractType" id="contractType">
             <option>-Contrat-</option>
-            @foreach ($contractTypes as $contractType)
+            @foreach ($dataOffer["contractTypes"] as $contractType)
                 <option value="{{ $contractType }}">
                     {{ $contractType }}
                 </option>
@@ -13,17 +13,24 @@
         </select>
         <select name="jobType" id="jobType">
             <option>-Type de travail-</option>
-            @foreach ($jobTypes as $jobType)
+            @foreach ($dataOffer["jobTypes"] as $jobType)
                 <option value="{{ $jobType }}">
                     {{ $jobType }}
                 </option>
             @endforeach
         </select>
-        @foreach ($offers as $offer)
+        <form method="POST">
+            @csrf
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="orderAsc" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ $dateAsc ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Ordonner par date</label>
+                  </div>
+            <button type="submit">Ordonner date</button>
+        </form>
+        @foreach ($dataOffer["offers"] as $offer)
             <div class="offers card mb-3" data-contract="{{ $offer->contract_type }}" data-job="{{ $offer->job_type }}">
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                        <img src="{{ $offer->image }}" class="card-img" alt="random meme">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
@@ -49,7 +56,7 @@
             </div>
         @endforeach
         <div>
-            <p>{{ $offers->links() }}</p>
+            <p>{{ $dataOffer["offers"]->links() }}</p>
         </div>
     </div>
 @endsection
