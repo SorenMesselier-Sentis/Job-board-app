@@ -20,7 +20,7 @@
             @endforeach
         </select>
         @foreach ($offers as $offer)
-            <div class="offers card mb-3" data-contract="{{ $contractType }}">
+            <div class="offers card mb-3" data-contract="{{ $offer->contract_type }}" data-job="{{ $offer->job_type }}">
                 <div class="row no-gutters">
                     <div class="col-md-3">
                         <img src="{{ $offer->image }}" class="card-img" alt="random meme">
