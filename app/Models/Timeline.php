@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Offer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Timeline extends Model
 {
@@ -17,6 +18,6 @@ class Timeline extends Model
 
     public function offer(): BelongsTo
     {
-        return $this->belongsTo(Offers::class, 'offer_id', 'id');
+        return $this->belongsTo(Offer::class, 'offer_id', 'id');
     }
 }
