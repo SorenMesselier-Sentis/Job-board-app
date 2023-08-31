@@ -20,11 +20,8 @@ class Offer extends Model
         'is_published',
         'image',
         'status',
+        'published_at',
         'company_id',
-    ];
-
-    protected $casts = [
-        'created_at' => 'datetime',
     ];
 
     public static function boot(): void
@@ -59,7 +56,7 @@ class Offer extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     public function timeline(): HasMany

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image');
             $table->enum('status', ['draft', 'published', 'updated']);
+            $table->date('published_at');
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->timestamps();
         });
