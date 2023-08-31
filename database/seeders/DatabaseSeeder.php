@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Offer;
+use App\Models\Company;
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $locations = Location::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $locations->each(function ($location) {
+            $companies = Company::factory()->create([
+                'location_id' => $location->id,
+            ]);
+
+            $companies->each(function ($company) {
+                Offer::factory(2)->create([
+                    'company_id' => $company->id,
+                ]);
+            });
+        });
     }
 }
